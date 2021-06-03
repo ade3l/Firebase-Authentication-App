@@ -21,7 +21,7 @@ import com.google.android.gms.tasks.Task;
 
 public class MainActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
-    GoogleSignInClient client;
+    static GoogleSignInClient client;
     private void signIn() {
         Intent signInIntent=client.getSignInIntent();
         startActivityForResult(signInIntent,1);
