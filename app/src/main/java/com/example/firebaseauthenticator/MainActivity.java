@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -19,9 +20,12 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     GoogleSignInOptions gso;
     static GoogleSignInClient client;
+
+    private TextView register;
+
     private void signIn() {
         Intent signInIntent=client.getSignInIntent();
         startActivityForResult(signInIntent,1);
@@ -59,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        register=(TextView)findViewById(R.id.reg);
+        register.setOnClickListener(this);
+
+
+
+
+
 
 //        configure Google Sign-In to request the user data
          gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -89,4 +100,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.reg:
+                startActivity(new Intent(this,register_user.class));
+                break;
+
+        }
+    }
 }
